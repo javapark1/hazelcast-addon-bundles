@@ -57,12 +57,29 @@ The version number in the bundle name indicates that the bundle has been created
 
 To install bundles, run the `install_bundle` command included in `hazelcast-addon`. Before installing a bundle, make sure you are in the workspace configured with the compatible IMDG or Jet version. Always execute the `switch_workspace` command first to enter the workspace of your choice before installing a bundle.
 
-### Preview Bundle
+### Listing Remote Bundles
 
-Before you install a bundle, you can preview the contents of the bundle by specifying the `preview` option as shown in the following example.
+The bundles in this repo can be listed using the `install_bundle` command. Simply run the command with or without the `-list` option.
 
 ```console
-install_bundle bundle-imdg-3.12.4-cluster-app-openssl-perf_test_openssl.tar.gz -preview
+# List remote bundles
+install_bundle
+```
+
+### Downloading Bundle
+
+For remote bundles, you must first download them before you can install them.
+
+```console
+install_bundle -download bundle-imdg-3.12.4-cluster-app-openssl-perf_test_openssl.tar.gz
+```
+
+### Previewing Bundle
+
+Before you install a bundle, you can preview the contents of the bundle by specifying the `preview` option as shown in the following example. You can also specify the `-download` option to preview a remote bundle.
+
+```console
+install_bundle -preview bundle-imdg-3.12.4-cluster-app-openssl-perf_test_openssl.tar.gz
 ```
 
 ### Bundle Installation Example
@@ -73,7 +90,10 @@ The following example shows typical bundle installation steps. Each bundle inclu
 # Switch to my-jet-ws which has been configured with Jet 3.2
 switch_workspace my-jet-ws
 
-# Install the trade cluster in my-jet-ws
+# Download bundle
+install_bundle -download -preview bundle-jet-3.2-cluster-trade.tar.gz
+
+# Install the downloaded trade cluster in my-jet-ws
 install_bundle bundles/bundle-jet-3.2-cluster-trade.tar.gz
 
 # Switch cluster to the 'trade' cluster you just installed.
