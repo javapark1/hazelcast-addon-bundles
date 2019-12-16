@@ -6,7 +6,7 @@ As part of the Rolling Upgrade lab of Hazelcast Operations Training, this cluste
 
 You can download version 3.11.1 from the following link:
 
-[Hazelcast Enterprise Downlaods](https://hazelcast.com/download/customer/)
+[Hazelcast Enterprise Downloads](https://hazelcast.com/download/customer/)
 
 ## Creating Workspace
 
