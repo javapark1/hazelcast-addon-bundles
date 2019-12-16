@@ -46,7 +46,6 @@ Switch workspace to `ws-3.11.1` and install this bundle.
 ```console
 switch_workspace ws-3.11.1
 install_bundle -download bundle-imdg-cluster-v3.11.1.tar.gz
-install_bundle bundles/bundle-imdg-cluster-v3.11.1.tar.gz
 ```
 
 ## Starting Cluster
@@ -54,6 +53,6 @@ install_bundle bundles/bundle-imdg-cluster-v3.11.1.tar.gz
 Upon successful bundle installation, switch cluster and start the cluster.
 
 ```console
-switch_bundle v3.11.1
+switch_cluster v3.11.1
 start_cluster
 ```

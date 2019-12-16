@@ -4,8 +4,10 @@ The `pado` app provides Hazelcast Portable class generator and CSV file import t
 
 ## Installing Pado App
 
+The `pado` app currently comes in the form of bundle. To install the pado bundle, Run the `install_bundle` command as follows:
+
 ```console
-create_app -app pado
+install_bundle -download bundle-imdg-3.12.4-app-pado.tar.gz
 ```
 
 ## Building Pado
