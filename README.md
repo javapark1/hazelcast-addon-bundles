@@ -13,7 +13,7 @@ A bundle may contain configuration files pertaining to cluster, app or both.
 A cluster bundle contains only cluster files. It may contain more than one cluster.
 
 ```console
-bundle-imdg|jet-<version>-cluster-<cluster-name>.tar.gz
+bundle-imdg|jet-<version>-cluster-<cluster-name>[-bin].tar.gz
 ```
 #### Cluster Example
 
@@ -47,6 +47,18 @@ bundle-imdg|jet-<version>-cluster-app-<cluster-name>-<app-name>.tar.gz
 
 ```console
 bundle-imdg-3.12.4-cluster-app-openssl-perf_test_openssl.tar.gz
+```
+
+### Binary Bundles
+
+The names of the bundles that include binary files end with `-bin.tar.gz`. A binary bundle includes a partial or complete set of binary files. If it contains a complete set of binary files then the build step is typically not required. See the `README.md` file included in the bundle for instructions.
+
+:pushpin: Because the binary files tend to become obsolete over time, they may not always work especially when you have upgraded `hazelcast-addon` or Hazelcast products. For this reason, it is recommended that you should instead install and build non-binary bundles where possible. Note that a binary bundle may also include the build script so that you can wipe out the included binaries and build from scratch as needed.
+
+#### Binary Bundle Example
+
+```console
+bundle-imdg-4.0-cluster-app-db-perf_test_db-bin.tar.gz
 ```
 
 ## Version Compatibility
@@ -87,8 +99,8 @@ install_bundle -preview bundle-imdg-3.12.4-cluster-app-openssl-perf_test_openssl
 The following example shows typical bundle installation steps. Each bundle includes `README.md` with instructions in the cluster and/or app directories.
 
 ```console
-# Switch to my-jet-ws which has been configured with Jet 3.2
-switch_workspace my-jet-ws
+# Switch to myjet-ws which has been configured with Jet 3.2
+switch_workspace myjet-ws
 
 # Download bundle
 install_bundle -download -preview bundle-jet-3.2-cluster-trade.tar.gz
