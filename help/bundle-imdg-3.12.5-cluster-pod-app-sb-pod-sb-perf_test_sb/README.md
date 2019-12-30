@@ -267,7 +267,7 @@ The exception occurs in Cluster A because the split-brain quorum size for the `n
    </map>
 ```
 
-You can view the `hazelcast.xml file as follows:
+You can view the `hazelcast.xml` file as follows:
 
 ```console
 cd_cluster sb
@@ -291,7 +291,7 @@ show_log
 
 Upon a successful merge, which takes about a minute, you should see something like the following in all the log files:
 
-```
+```console
 Members {size:5, ver:11} [
 	Member [192.168.56.15]:5701 - 9c41e05d-1acf-449b-a25f-1991c8756617
 	Member [192.168.56.14]:5701 - 235691e0-bc36-407e-971a-f36189fc0801
