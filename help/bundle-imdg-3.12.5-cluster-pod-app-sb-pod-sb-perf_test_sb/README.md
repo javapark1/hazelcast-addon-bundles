@@ -4,13 +4,14 @@ This bundle provides scripts, configuration files, and apps for creating a netwo
 
 - Pod **pod-sb**. The pod-sb pod is configured with one (1) primary node and five (5) nodes. Each node has 2 GiB of memory.
 
-- Cluster **sb**. The sb cluster is configured with five (5) VM members running in the pod-sb pod. It also includes the following maps configured with split-brain quorum rules.
+- Cluster **sb**. The sb cluster is configured with five (5) VM members running in the `pod-sb` pod. It includes scripts that use `iptables` to drop TCP packets to split the `sb` cluster into two (2). It is configured with split-brain quorum rules for th following maps.
+
   - nw/customers
   - nw/orders
 
-- App **perf_test_sb**. The perf_test_sb app is configured to run on a split cluster.
+- App **perf_test_sb**. The `perf_test_sb` app is configured to run on a split cluster.
 
-- App **desktop**. The desktop app is used to compare data in the split clusters and the merged cluster. It is not included in the bundle because the vanilla desktop works without any modifications. You will be installing the desktop app as one of the steps shown in the [Creating Split-Brain](#creating-split-brain) section.
+- App **desktop**. The `desktop` app is used to compare data in the split clusters and the merged cluster. It is not included in the bundle because the vanilla desktop works without any modifications. You will be installing the `desktop` app as one of the steps shown in the [Creating Split-Brain](#creating-split-brain) section.
 
 *Note that the `sb` cluster is configured to run in the `pod-sb` pod with its members running as VM hosts and not Vagrant pod hosts.*
 
@@ -20,14 +21,14 @@ We will be building the following components as we setup and run the environment
 
 1. Configure pod
 2. Build pod
-3. Build perf_test_sb
-4. Build desktop
+3. Build `perf_test_sb`
+4. Build `desktop`
 
 Follow the instructions in the subsequent sections.
 
 ### Configuring Pod
 
-You must first build the pod-sb pod, which has been created with the IP addresses shown below. Make sure you have the host-only private network created for 192.168.56.1. For instructions see 
+You must first build the `pod-sb` pod, which has been created with the IP addresses shown below. Make sure you have the host-only private network created for 192.168.56.1. For instructions see 
 
 [Creating VirtualBox Private Network (host-only)](https://github.com/hazelcast/hazelcast-addon/tree/master/hazelcast-addon-deployment/src/main/resources/pods#creating-virtualbox-private-network-host-only)
 
@@ -80,7 +81,7 @@ cd_pod pod-sb
 vi etc/pod.properties
 ```
 
-Once you are satisfied with the pod-sb properties, run `build_pod` to build the nodes.
+Once you are satisfied with the `pod-sb` properties, run `build_pod` to build the nodes.
  
 ```console
 # Build and start the pod
@@ -159,6 +160,12 @@ From `pnode.local`, run `split_cluster` as follows:
 ```console
 switch_cluster sb; cd bin_sh
 ./split_cluster
+```
+
+To see the `iptables` rules set by `split_cluster`, run `list_rules` as follows:
+
+```console
+./list_rules
 ```
 
 ### 6. From `pnode.local`, monitor the log files to see the cluster splits into two (2) as follows:
@@ -269,11 +276,11 @@ less etc/hazecast.xml
 
 ### 10. Merge clusters
 
-From `pnode.local`, run `merge_clusters` as follows:
+From `pnode.local`, run `merge_cluster` as follows:
 
 ```console
 switch_cluster sb; cd bin_sh
-./merge_clusters
+./merge_cluster
 ```
 
 ### 11. Monitor log files
@@ -327,4 +334,4 @@ remove_pod -pod pod-sub
 
 ### Close Desktop
 
-Close desktop app instances by clicking on the close icon.
+Close `desktop` app instances by clicking on the close icon.
