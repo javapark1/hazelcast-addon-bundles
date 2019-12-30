@@ -329,7 +329,7 @@ stop_pod -pod pod-sb
 From you host OS, execute the following:
 
 ```console
-remove_pod -pod pod-sub
+remove_pod -pod pod-sb
 ```
 
 ### Close Desktop
