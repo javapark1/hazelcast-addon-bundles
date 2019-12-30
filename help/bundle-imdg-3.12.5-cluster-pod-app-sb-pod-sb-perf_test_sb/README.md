@@ -10,7 +10,7 @@ This bundle provides scripts, configuration files, and apps for creating a netwo
 
 - App **perf_test_sb**. The perf_test_sb app is configured to run on a split cluster.
 
-- App **desktop**. The desktop app is used to compare data in the split clusters and the merged cluster. It is not included in the bundle because the vanilla desktop works without any modifications. You will be installing the desktop app as one of the steps shown in the [Creating Split-Brain](Creating-Split-Brain) section.
+- App **desktop**. The desktop app is used to compare data in the split clusters and the merged cluster. It is not included in the bundle because the vanilla desktop works without any modifications. You will be installing the desktop app as one of the steps shown in the [Creating Split-Brain](#creating-split-brain) section.
 
 *Note that the `sb` cluster is configured to run in the `pod-sb` pod with its members running as VM hosts and not Vagrant pod hosts.*
 
@@ -29,7 +29,7 @@ Follow the instructions in the subsequent sections.
 
 You must first build the pod-sb pod, which has been created with the IP addresses shown below. Make sure you have the host-only private network created for 192.168.56.1. For instructions see 
 
-[https://github.com/hazelcast/hazelcast-addon/tree/master/hazelcast-addon-deployment/src/main/resources/pods#creating-virtualbox-private-network-host-only](https://github.com/hazelcast/hazelcast-addon/tree/master/hazelcast-addon-deployment/src/main/resources/pods#creating-virtualbox-private-network-host-only)
+[Creating VirtualBox Private Network (host-only)](https://github.com/hazelcast/hazelcast-addon/tree/master/hazelcast-addon-deployment/src/main/resources/pods#creating-virtualbox-private-network-host-only)
 
 | Name                 | IP/Mask         |
 | -------------------- | --------------- |
@@ -63,7 +63,7 @@ node.count=5
 host.productsDir=/Users/dpark/Work/Hazelcast/workspaces_0.2.4-SNAPSHOT/ws-pods/products
 ```
 
-Make sure to change the `host.productsDir` value to reflect your Linux product directory path. You can also change the memory size of the primary and data nodes if you don't have enough memory. If you change the memory size then you may also need to change the member heap size, which is also mentioned in the [Configuring Cluster](#Configuring-Cluster) section below. 
+Make sure to change the `host.productsDir` value to reflect your Linux product directory path. You can also change the memory size of the primary and data nodes if you don't have enough memory. If you change the memory size then you may also need to change the member heap size, which is also mentioned in the [Configuring Cluster](#configuring-cluster) section below. 
 
 The products directory must contain Linux version of JDK and Hazelcast Enterprise. For example,
 
@@ -89,7 +89,7 @@ build_pod -pod pod-sb
 
 ### Configuring Cluster
 
-If you changed the memory size of the primary and data nodes in the [Configuring-Pod](Configuring-Pod) section, then you can adjust the Hazelcat member min/max heap size in the `etc/cluster.properties` file as follows:
+If you changed the memory size of the primary and data nodes in the [Configuring Pod](#configuring-pod) section, then you can adjust the Hazelcast member min/max heap size in the `etc/cluster.properties` file as follows:
 
 ```console
 switch_cluster sb
@@ -102,7 +102,7 @@ heap.max=1g
 
 ## Creating Split-Brain
 
-1. Start cluster and Management Center
+### 1. Start cluster and Management Center
 
 Login to `pnode.local` and start the `sb` cluster as follows:
 
@@ -117,11 +117,11 @@ start_cluster
 start_mc
 ```
 
-2. Monitor the Management Center from your web browser.
+### 2. Monitor the Management Center from your web browser
 
 [http://pnode.local:8080/hazelcast-mancenter](http://pnode.local:8080/hazelcast-mancenter)
 
-3. Ingest data - perf_test_sb
+### 3. Ingest data - perf_test_sb
 
 From your host OS, build `perf_test_sb` and run `test_group` as follows:
 
@@ -131,7 +131,7 @@ cd_app perf_test_sb; cd bin_sh
 ./test_group -prop ../etc/group-factory -run
 ```
 
-4. View data - desktop
+### 4. View data - desktop
 
 From your host OS, install and run the `desktop` app as follows:
 
@@ -152,7 +152,7 @@ User Name: foo
 Password: <leave blank>
 ```
 
-5. Split cluster
+### 5. Split cluster
 
 From `pnode.local`, run `split_cluster` as follows:
 
@@ -161,7 +161,7 @@ switch_cluster sb; cd bin_sh
 ./split_cluster
 ```
 
-6. From `pnode.local`, monitor the log files to see the cluster splits into two (2) as follows:
+### 6. From `pnode.local`, monitor the log files to see the cluster splits into two (2) as follows:
 
 | Cluster | Nodes                                       |
 | ------- | ------------------------------------------- |
@@ -197,7 +197,7 @@ Members {size:3, ver:6} [
 ]
 ```
 
-6. Ingest data into Cluster A - `perf_test_sb`
+### 7. Ingest data into Cluster A - `perf_test_sb`
 
 From your host OS, run `test_group` which has been preconfigured to connect to Cluster B, i.e., node-03.local, node-04.local, node-05.local (see etc/hazelcast-client.xml). `test_group` updates the data that was inserted earlier. We'll compare the new data with the old data in the split clusters.
 
@@ -206,7 +206,7 @@ cd_app perf_test_sb; cd bin_sh
 ./test_group -prop ../etc/group-factory -run
 ```
 
-7. Compare data between Cluster A and Cluster B
+### 8. Compare data between Cluster A and Cluster B
 
    - Launch desktop and login to Cluster A, e.g., `node-01.local:5701`
    - Launch desktop and login to Cluster B, e.g., `node-05.local:5701`
@@ -220,10 +220,13 @@ cd ../hazelcast-desktop_<version>/bin_sh
 ./desktop
 ```
 
-8. Execute queries on both desktop instances so that we can compare the results later when we merge the clusters
+### 9. Execute queries on both desktop instances
+
+Execute queries on both desktop instances so that we can compare the results later when we merge the clusters.
 
 ```console
---- From each desktop instacne execute the following. Note that the desktop supports SQL comments:
+--- From each desktop instacne, execute the following queries
+--- (Note that the desktop supports SQL comments):
 select * from nw/customers order by customerId;
 select * from nw/orders order by orderId;
 ```
@@ -235,7 +238,7 @@ Map          | Cluster A                 | Cluster B     |
 nw/customers | Query Success             | Query Success |
 nw/orders    | Query Failure (Exception) | Query Success |
 
-**Query Exception:** com.hazelcast.quorum.QuorumException: Split brain protection exception: quorumRuleWithThreeMembers has failed!
+**Query Exception:** *com.hazelcast.quorum.QuorumException: Split brain protection exception: quorumRuleWithThreeMembers has failed!*
 
 The exception occurs in Cluster A because the split-brain quorum size for the `nw/customers` map is configured with two (2) as follows (See `etc/hazelcast.xml`):
 
@@ -264,16 +267,16 @@ cd_cluster sb
 less etc/hazecast.xml
 ```
 
-9. Merge cluster
+### 10. Merge clusters
 
-From `pnode.local`, run `merge_cluster` as follows.
+From `pnode.local`, run `merge_clusters` as follows:
 
 ```console
 switch_cluster sb; cd bin_sh
-./merge_cluster
+./merge_clusters
 ```
 
-10. Monitor log files
+### 11. Monitor log files
 
 ```console
 show_log
@@ -291,7 +294,9 @@ Members {size:5, ver:11} [
 ]
 ```
 
-11. Compare data between the merged cluster and Cluster B. The merged cluster should have the exact same data as Cluster B since both maps are configured with `LatestUpdateMergePolicy`.
+### 12. Compare data between the merged cluster and Cluster B
+
+The merged cluster should have the exact same data as Cluster B since both maps are configured with `LatestUpdateMergePolicy`.
 
 ## Tearing Down
 
