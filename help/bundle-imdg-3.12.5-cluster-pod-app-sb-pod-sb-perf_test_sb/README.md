@@ -129,7 +129,7 @@ From your host OS, build `perf_test_sb` and run `test_group` as follows:
 ```console
 cd_app perf_test_sb; cd bin_sh
 ./build_app
-./test_group -prop ../etc/group-factory -run
+./test_group -prop ../etc/group-factory.properties -run
 ```
 
 ### 4. View data - desktop
@@ -204,13 +204,15 @@ Members {size:3, ver:6} [
 ]
 ```
 
+Try refreshing the management center from your browser. You should see the list of members changing sporadically indicating there is a network issue.
+
 ### 7. Ingest data into Cluster A - `perf_test_sb`
 
-From your host OS, run `test_group` which has been preconfigured to connect to Cluster B, i.e., node-03.local, node-04.local, node-05.local (see etc/hazelcast-client.xml). `test_group` updates the data that was inserted earlier. We'll compare the new data with the old data in the split clusters.
+From your host OS, run `test_group` which has been preconfigured to connect to Cluster B, i.e., node-03.local, node-04.local, node-05.local (see `etc/hazelcast-client.xml`). `test_group` updates the data that was inserted earlier. We'll compare the new data with the old data in the split clusters.
 
 ```console
 cd_app perf_test_sb; cd bin_sh
-./test_group -prop ../etc/group-factory -run
+./test_group -prop ../etc/group-factory.properties -run
 ```
 
 ### 8. Compare data between Cluster A and Cluster B
@@ -220,7 +222,7 @@ cd_app perf_test_sb; cd bin_sh
 
 ```console
 cd_app desktop_sb
-cd ../hazelcast-desktop_<version>/bin_sh
+cd hazelcast-desktop_<version>/bin_sh
 
 # Launch two (2) instances of desktop
 ./desktop
@@ -271,7 +273,7 @@ You can view the `hazelcast.xml` file as follows:
 
 ```console
 cd_cluster sb
-less etc/hazecast.xml
+less etc/hazelcast.xml
 ```
 
 ### 10. Merge clusters
@@ -283,7 +285,7 @@ switch_cluster sb; cd bin_sh
 ./merge_cluster
 ```
 
-### 11. Monitor log files
+### 11. Monitor merged cluster
 
 ```console
 show_log
@@ -300,6 +302,8 @@ Members {size:5, ver:11} [
 	Member [192.168.56.11]:5701 - 79d0fa6e-d7dd-46d4-8525-52250dee6e80 this
 ]
 ```
+
+The management center should also show five (5) members.
 
 ### 12. Compare data between the merged cluster and Cluster B
 
