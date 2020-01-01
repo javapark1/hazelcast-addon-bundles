@@ -1,0 +1,1 @@
+As part of the TLS/SSL lab of Hazelcast Operations Training, the openssl cluster has been preconfigured to enable OpenSSL/BoringSSL.

@@ -1,6 +1,6 @@
 # App: Pado
 
-The `pado` app provides Hazelcast Portable class generator and CSV file import tools for Hazelcast.
+The `pado` app provides a Hazelcast Portable class generator and CSV file import tools for Hazelcast.
 
 ## Installing Pado App
 

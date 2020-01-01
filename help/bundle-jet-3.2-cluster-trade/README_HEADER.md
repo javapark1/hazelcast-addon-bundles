@@ -1,0 +1,1 @@
+The trade cluster bundle installs a Jet cluster that includes the build_app script to clone and build the realtime-trade-monitor project maintained by cangencer. You must install this bundle in a Jet workspace.
