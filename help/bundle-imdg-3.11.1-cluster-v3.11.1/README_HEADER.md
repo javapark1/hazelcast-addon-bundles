@@ -1,1 +1,1 @@
-As part of the Rolling Upgrade lab of Hazelcast Operations Training, this bundle includes an IMDG cluster has been preconfigured to run with Hazelcast Enterprise 3.11.1 which must be installed separately.
+As part of the Rolling Upgrade lab of Hazelcast Operations Training, this bundle includes an IMDG cluster that has been preconfigured to run with Hazelcast Enterprise 3.11.1 which must be installed separately.
