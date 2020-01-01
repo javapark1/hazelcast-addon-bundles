@@ -1,4 +1,4 @@
-# Split-Brain Cluster
+# IMDG Cluster: sb (Split-Brain)
 
 This bundle provides scripts, configuration files, and apps for creating a network split-brain environment where you can test Hazelcast's split-brain capabilities. Included are
 
