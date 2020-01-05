@@ -206,7 +206,7 @@ Members {size:3, ver:6} [
 
 Try refreshing the management center from your browser. You should see the list of members changing sporadically indicating there is a network issue.
 
-### 7. Ingest data into Cluster A - `perf_test_sb`
+### 7. Ingest data into Cluster B - `perf_test_sb`
 
 From your host OS, run `test_group` which has been preconfigured to connect to Cluster B, i.e., node-03.local, node-04.local, node-05.local (see `etc/hazelcast-client.xml`). `test_group` updates the data that was inserted earlier. We'll compare the new data with the old data in the split clusters.
 
@@ -234,8 +234,8 @@ cd hazelcast-desktop_<version>/bin_sh
 Execute queries on both desktop instances so that we can compare the results later when we merge the clusters.
 
 ```console
---- From each desktop instacne, execute the following queries
---- (Note that the desktop supports SQL comments):
+-- From each desktop instacne, execute the following queries
+-- (Note that the desktop supports SQL comments):
 select * from nw/customers order by customerId;
 select * from nw/orders order by orderId;
 ```
