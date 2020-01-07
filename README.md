@@ -4,6 +4,10 @@ This repo contains readily runnable hazelcast-addon bundles. It is an experiment
 
 A hazelcast-addon bundle is a tarball that includes all the necessary files to activate a Hazelcast environment in which you can start an IMDG or Jet cluster and/or run Hazelcast apps. You can find README.md that provides detailed installation, build, and execution instructions in the cluster and app directories.
 
+To use this repo, you must first install `hazelcast-addon`:
+
+[https://github.com/javapark1/hazelcast-addon#bundles](https://github.com/javapark1/hazelcast-addon#bundles)
+
 ## Bundle Naming Conventions
 
 A bundle may contain configuration files pertaining to cluster, app or both. 
