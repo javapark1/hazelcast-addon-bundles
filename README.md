@@ -6,7 +6,7 @@ A hazelcast-addon bundle is a tarball that includes all the necessary files to a
 
 To use this repo, you must first install `hazelcast-addon`:
 
-[https://github.com/javapark1/hazelcast-addon#bundles](https://github.com/javapark1/hazelcast-addon#bundles)
+[https://github.com/javapark1/hazelcast-addon](https://github.com/javapark1/hazelcast-addon)
 
 ## Bundle Naming Conventions
 
