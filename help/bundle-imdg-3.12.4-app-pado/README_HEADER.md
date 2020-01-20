@@ -1,1 +1,1 @@
-The pado app provides a Hazelcast Portable class generator and CSV file import tools for Hazelcast.
+The pado app provides a Hazelcast Portable class generator and CSV file import tools for Hazelcast. This bundle includes step-by-step instructions for ingesting UCI Machine Learning datasets into Hazelcast.
