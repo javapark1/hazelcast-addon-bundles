@@ -59,6 +59,14 @@ cp -r data/nw/import data/
 
 2. Generate schema files.
 
+First, edit `bin_sh/setenv.sh` file and set the correct path to `JAVA_HOME`.
+
+```console
+vi bin_sh/setenv.sh
+```
+
+Generate schema files for the `nw` data
+
 ```console
 # Generate schema files. The following command generates schema files in the
 # data/schema/generated directory.
@@ -69,7 +77,7 @@ cd bin_sh/hazelcast
 mv ../../data/schema/generated/* ../../data/schema/
 ```
 
-3. Generated `VersionedPortable` source code. The following command reads schema files located in data/schema/ and generates the corresponding `VersionedPortable Java source code.
+3. Generate `VersionedPortable` source code. The following command reads schema files located in data/schema/ and generates the corresponding `VersionedPortable Java source code.
 
 ```console
 # Generate VersionedPortable classes with the factory ID of 30000 and the
