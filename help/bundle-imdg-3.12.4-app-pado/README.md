@@ -103,6 +103,9 @@ switch_cluster myhz
 # In hazelcast.xml, add the serialization configuration outputted by
 # the generate_versioned_portable command in step 3.
 vi etc/hazelcast.xml
+
+<!-- Find the serialization element in ect/hazelast.xml and add the portable-factory
+     element shown below. -->
              <serialization>
                  <portable-factories>
                      <portable-factory factory-id="30000">
