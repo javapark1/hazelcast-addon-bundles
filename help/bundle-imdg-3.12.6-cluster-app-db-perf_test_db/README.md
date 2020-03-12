@@ -10,7 +10,7 @@ install_bundle -download bundle-imdg-3.12.6-cluster-app-db-perf_test_db.tar.gz
 
 ## Use Case
 
-The client applications read/write from/to the Hazelcast which in turn read/write from/to a database. The database is used as the persistent store and Hazelcast as the bidirectional cache-aside store. The Hazelcast maps are configured with the LFU eviction policy to evict entries if the free heap size falls below 25% of the maximum heap size. This ensures the Hazelcast cluster will have at least 25% of free memory at all time necessary for executing distributed operations such as query and task executions.
+The client applications read/write from/to the Hazelcast which in turn read/write from/to a database. The database is used as the persistent store and Hazelcast as the bidirectional cache-aside store. The Hazelcast maps are configured with the LFU eviction policy to evict entries if the free heap size falls below 25% of the maximum heap size. This ensures the Hazelcast cluster will have at least 25% of free memory at all time which is necessary for executing distributed operations such as query and task executions.
 
 ![DB Sync Screenshot](/images/db-sync.png)
 
