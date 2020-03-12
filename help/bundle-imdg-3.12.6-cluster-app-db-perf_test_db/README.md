@@ -60,7 +60,7 @@ start_cluster
 The `test_group` script creates mock data for `Customer` and `Order` objects and ingests them into the Hazelcast cluster which in turn writes to MySQL via the `MapStorePkDbImpl` plugin included in the `hazelcast-addon` distribution. The same plugin is also registered to retrieve data from MySQL for cache misses in the cluster.
 
 ```console
-cd_app perf_test_mysql; cd bin_sh
+cd_app perf_test_db; cd bin_sh
 ./test_group -prop ../etc/group-factory.properties  -run
 ```
 
@@ -101,7 +101,7 @@ vi etc/hibernate.cfg-mydb.xml
 
 Set the cluster to the new Hibernate configuration file. Edit `bin_sh/setenv.sh` and set the `HIBERNATE_CONFIG_FILE` environment variable to the new Hibernate configuration file name.
 
-```
+```console
 cd_cluster
 vi bin_sh/setenv.sh
 ```
