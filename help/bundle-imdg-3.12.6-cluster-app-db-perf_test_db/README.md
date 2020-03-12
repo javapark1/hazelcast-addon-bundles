@@ -1,11 +1,11 @@
 # Bundle: db
 
-The `db` bundle is preconfigured to synchronize Hazelcast with MySQL running on localhost. It includes the `db` cluster and `perf_test_db` app to read/write from/to Hazelcast and MySQL. It includes instructions for replacing MySQL with another database.
+The `db` bundle is preconfigured to synchronize Hazelcast with MySQL running on localhost. It includes the `db` cluster and `perf_test_db` app to read/write from/to Hazelcast and MySQL. It also includes instructions for replacing MySQL with another database.
 
 ## Installing Bundle
 
 ```console
-install_bundle -download bundle-hazelcast-3.12.6-cluster-app-db-perf_test_db.tar.gz
+install_bundle -download bundle-imdg-3.12.6-cluster-app-db-perf_test_db.tar.gz
 ```
 
 ## Use Case
