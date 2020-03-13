@@ -186,7 +186,12 @@ cd pado_<version>/bin_sh/tools
 2. Copy the scheduler template directory and create jobs that dump database tables to CSV files.
 
 ```console
+# Copy the entire template scheduler directory
 cp -r data/template/scheduler data/
+
+# IMPORTANT: Remove the files that came with the template. We don't need them.
+rm data/scheduler/etc/*
+rm data/scheduler/schema/*
 ```
 
 Create the `mysql.json` file.
@@ -223,6 +228,7 @@ vi mysql.json
         ]
 }
 ```
+
 Note that `serverTimezone` is set to `EST` for the JDBC URL. Without it, you may see the following exception if your MySQL uses the system timezone and unable to calculate the dates due to the leap year.
 
 ```console

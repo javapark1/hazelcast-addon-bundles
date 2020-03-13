@@ -16,7 +16,7 @@ The client applications read/write from/to the Hazelcast which in turn read/writ
 
 ## Configuring MySQL
 
-The 'db' cluster has been preconfigured to connect to MySQL on localhost with the user name `root` and the password `MySql123`. Change the user name and password in `etc/hibernate.cfg-mysql.xml`.
+The 'db' cluster has been preconfigured to connect to MySQL on localhost with the user name `root` and the password `MySql123`. You can change the user name and password in `etc/hibernate.cfg-mysql.xml`.
 
 *If you have a database other than MySQL than follow the instructions in the [Replacing MySQL with Another Database](#replacing-mysql-with-another-database) section.*
 
