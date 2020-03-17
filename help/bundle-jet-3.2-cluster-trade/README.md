@@ -1,6 +1,12 @@
 # Jet Cluster: trade
   
-The `trade` cluster bundle installs a Jet cluster that includes the `build_app` script to clone and build the `realtime-trade-monitor` project maintained by cangencer. You must install this bundle in a Jet workspace.
+The `trade` cluster bundle installs a Jet cluster that includes the `build_app` script to clone and build the `realtime-trade-monitor` project available at GitHub. You must install this bundle in a Jet workspace.
+
+## Installing Bundle
+
+```console
+install_bundle -download bundle-jet-3.2-cluster-trade.tar.gz
+```
 
 ## Required Software
 
@@ -11,12 +17,15 @@ export KAFKA_HOME=~/Work/products/kafka_2.12-2.3.1
 export PATH=$PATH:$KAFKA_HOME
 ```
 
-## Installing and Building the `trade` Bundle
+## Building the `trade` Bundle
 
-To build it, run the `build_app` script from inside the `bin_sh` directory as follows:
+To build it, run the `build_app` script from inside the `trade` cluster's `bin_sh` directory as follows:
 
 ```console
-cd bin_sh
+# Switch to the trade cluster
+switch_cluster trade; cd bin_sh
+
+# Build the app
 ./build_app
 ```
 
