@@ -45,7 +45,7 @@ add_member
 start_cluster
 ```
 
-## Running apps
+## Running Apps
 
 The `build_app` clones the repo in the cluster directory. For instructions, please see README.md in the cloned project directory as follows.
 
