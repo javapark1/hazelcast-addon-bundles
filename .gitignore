@@ -13,3 +13,6 @@ buildNumber.properties
 
 # Eclipse
 .project
+
+# Visio
+*.~vsd
