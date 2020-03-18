@@ -12,7 +12,7 @@ install_bundle -download
 
 This use case introduces the Debezium MySQL connector a Jet job for ingesting database CDC records into a Jet cluster.
 
-![CDC Tutorial Data Flow](/images/cdc-tutorial.png)
+![CDC Tutorial Data Flow](/images/jet-cdc-tutorial.png)
 
 ## Required Software
 
