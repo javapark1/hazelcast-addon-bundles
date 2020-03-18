@@ -44,26 +44,57 @@ cd_docker cdc_tutorial; cd bin_sh
 
 ## Starting Jet Cluster
 
-First, create a Jet cluster with default settings. Any Jet cluster with default settings will work. For our example, we will use the default cluster, `myjet`.
+We can start a Jet cluster on the host machine or Docker containers.
+
+### Starting Jet Cluster on Host Machine
+
+First, create a Jet cluster with the default settings. Any Jet cluster with the default settings will work.
 
 ```console
-create_cluster -cluster myjet
+create_cluster -cluster cdc_jet
 ```
 
 Start the cluster.
 
 ```console
-switch_cluster myjet
+switch_cluster cdc_jet
 start_cluster
+```
+
+### Starting Jet Cluster on Docker Containers
+
+```console
+create_docker -cluster cdc_jet -host host.docker.internal
+```
+
+:exclamation: The Jet's `slf4j` library might not be compatible with the version that the tutorial build packaged in the `cdc-tutorial-1.0-SNAPSHOT.jar` file. To avoid this problem, let's copy the jar file in the Jet cluster `plugins` directory.
+
+```console
+cd_docker cdc_jet
+cp ../cdc_tutorial/target/cdc-tutorial-1.0-SNAPSHOT.jar hazelcast-addon/plugins/
+```
+
+Start the cluster.
+
+```console
+cd_docker cdc_jet
+docker-compose up
 ```
 
 ## Submitting Debezium Connector Job
 
 The default Jet cluster has been configured with the start port 6701. Unless the cluster has been configured with the default port of 5701, we need to specify the port number.
 
+The job jar takes the host IP address as the optional argument. If you don't specify the argument, then it defaults to `host.docker.internal` (See the source code: `src/main/java/org/example/JetJob.java`). The host IP must be accessible from the Docker containers.
+
 ```console
 cd_docker cdc_tutorial
+
+# For host IP: host.docker.internal
 jet --addresses localhost:6701 submit target/cdc-tutorial-1.0-SNAPSHOT.jar
+
+# For another IP:
+jet --addresses localhost:6701 submit target/cdc-tutorial-1.0-SNAPSHOT.jar <host_ip>
 ```
 
 Upon submitting the connector, the `customers` table records will be populated in the `customers` map. You can view the `customers` map by running the `read_cache` script.
@@ -140,11 +171,13 @@ Note that the `firstName` field is changed from `Anne` to `Anne Marie` for `id=1
 ## Tearing Down
 
 ```console
-cd_docker cdc_tutorial; cd bin_sh
+# Stop cluster (if running on host machine)
+stop_cluster
+
+# Stop cluster (if running on Docker containers)
+# Ctrl-C Docker Compose
 
 # Stop and prune Docker containers
+cd_docker cdc_tutorial; cd bin_sh
 ./cleanup
-
-# Stop cluster
-stop_cluster
 ```
