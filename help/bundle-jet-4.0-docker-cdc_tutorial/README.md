@@ -5,7 +5,7 @@ The `cdc_tutorial` bundle wraps the CDC tutorial available from the Hazelcast si
 ## Installing Bundle
 
 ```console
-install_bundle -download 
+install_bundle -download bundle-jet-4.0-docker-cdc_tutorial.tar.gz
 ```
 
 ## Use Case
@@ -62,24 +62,11 @@ start_cluster
 The default Jet cluster has been configured with the start port 6701. Unless the cluster has been configured with the default port of 5701, we need to specify the port number.
 
 ```console
+cd_docker cdc_tutorial
 jet --addresses localhost:6701 submit target/cdc-tutorial-1.0-SNAPSHOT.jar
 ```
 
-## Updating Database
-
-```console
-# Start MySQL CLI
-./start_mysql_cli
-```
-
-From the CLI, update the `customers` table.
-
-```console
-mysql> use inventory;
-mysql> UPDATE customers SET first_name='Anne Marie' WHERE id=1004;
-```
-
-## Viewing Data Updates
+Upon submitting the connector, the `customers` table records will be populated in the `customers` map. You can view the `customers` map by running the `read_cache` script.
 
 ```console
 cd_docker cdc_tutorial; cd bin_sh
@@ -91,10 +78,64 @@ cd_docker cdc_tutorial; cd bin_sh
 ```console
 Currently there are following customers in the cache:
         Customer {id=1002, firstName=George, lastName=Bailey, email=gbailey@foobar.com}
-        Customer {id=1004, firstName=Anne Marie, lastName=Kretchmar, email=annek@noanswer.org}
-        Customer {id=1003, firstName=Edward, lastName=Walker, email=ed@walker.com}
         Customer {id=1001, firstName=Sally, lastName=Thomas, email=sally.thomas@acme.com}
+        Customer {id=1003, firstName=Edward, lastName=Walker, email=ed@walker.com}
+        Customer {id=1004, firstName=Anne, lastName=Kretchmar, email=annek@noanswer.org}
 ```
+
+## Updating Database
+
+```console
+cd_docker cdc_tutorial; cd bin_sh 
+./start_mysql_cli
+```
+
+From the CLI, use the `inventory` database and view the `customers` table.
+
+```console
+mysql> use inventory
+mysql> select * from customers;
+```
+
+**Output:**
+
+```console
++------+------------+-----------+-----------------------+
+| id   | first_name | last_name | email                 |
++------+------------+-----------+-----------------------+
+| 1001 | Sally      | Thomas    | sally.thomas@acme.com |
+| 1002 | George     | Bailey    | gbailey@foobar.com    |
+| 1003 | Edward     | Walker    | ed@walker.com         |
+| 1004 | Anne       | Kretchmar | annek@noanswer.org    |
++------+------------+-----------+-----------------------+
+```
+
+From the CLI, update the `customers` table.
+
+```console
+mysql> UPDATE customers SET first_name='Anne Marie' WHERE id=1004;
+```
+
+## Viewing Data Updates
+
+Let's take a look at the `customers` map in the Jet cluster.
+
+```console
+cd_docker cdc_tutorial; cd bin_sh
+./read_cache
+```
+
+**Output:**
+
+```console
+Currently there are following customers in the cache:
+        Customer {id=1002, firstName=George, lastName=Bailey, email=gbailey@foobar.com}
+        Customer {id=1001, firstName=Sally, lastName=Thomas, email=sally.thomas@acme.com}
+        Customer {id=1003, firstName=Edward, lastName=Walker, email=ed@walker.com}
+        Customer {id=1004, firstName=Anne Marie, lastName=Kretchmar, email=annek@noanswer.org} 
+```
+
+Note that the `firstName` field is changed from `Anne` to `Anne Marie` for `id=1004`.
 
 ## Tearing Down
 
