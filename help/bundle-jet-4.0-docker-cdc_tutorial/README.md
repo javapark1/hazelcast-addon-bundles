@@ -63,6 +63,10 @@ start_cluster
 
 ### Starting Jet Cluster on Docker Containers
 
+The `create_docker` command automatically selects a host IP address but it may not be accessible from the Docker containers if you have multiple addresses assigned to the host. You can specify the host IP address using the `-host` option.
+
+If you are running Docker Desktop then you can specify the `-host` option with `host.docker.internal`, which resolves to the internal IP address used by the host. Otherwise, specify the IP address that the Docker containers have access to.
+
 ```console
 create_docker -cluster cdc_jet -host host.docker.internal
 ```
@@ -83,17 +87,20 @@ docker-compose up
 
 ## Submitting Debezium Connector Job
 
-The default Jet cluster has been configured with the start port 6701. Unless the cluster has been configured with the default port of 5701, we need to specify the port number.
+The default Jet cluster has been configured with the start port, 6701. Unless the cluster has been configured with the default port, 5701, we need to specify the port number when submitting a job.
 
-The job jar takes the host IP address as the optional argument. If you don't specify the argument, then it defaults to `host.docker.internal` (See the source code: `src/main/java/org/example/JetJob.java`). The host IP must be accessible from the Docker containers.
+The job jar we have built takes the host IP address as the optional argument. If you don't specify the argument, then it defaults to `localhost` (See the source code: `src/main/java/org/example/JetJob.java`). As mentioned before, the host IP must be accessible from the Docker containers.
 
 ```console
 cd_docker cdc_tutorial
 
-# For host IP: host.docker.internal
+# For host IP: localhost (if running on host machine)
 jet --addresses localhost:6701 submit target/cdc-tutorial-1.0-SNAPSHOT.jar
 
-# For another IP:
+# For Docker Desktop: host.docker.internal
+jet --addresses localhost:6701 submit target/cdc-tutorial-1.0-SNAPSHOT.jar host.docker.internal
+
+# For others:
 jet --addresses localhost:6701 submit target/cdc-tutorial-1.0-SNAPSHOT.jar <host_ip>
 ```
 
