@@ -93,7 +93,7 @@ cd_docker cdc_tutorial; cd bin_sh
 From the CLI, use the `inventory` database and view the `customers` table.
 
 ```console
-mysql> use inventory
+mysql> use inventory;
 mysql> select * from customers;
 ```
 
