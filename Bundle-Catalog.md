@@ -14,11 +14,22 @@ install_bundle -download bundle-imdg-3.12.6-cluster-app-dbsched-pado_dbsched-per
 
 ---
 
+## Cluster Split-Brain - IMDG 3.12.x
+
+```console
+install_bundle -download bundle-imdg-3.12.5-cluster-pod-app-sb-pod-sb-perf_test_sb.tar.gz
+```
+
+[![Cluster Split-Brain Diagram](images/split-brain.png)](help/bundle-imdg-3.12.5-cluster-pod-app-sb-pod-sb-perf_test_sb/README.md)
+
+---
+
 ## CVS File Importer (VersionedPortable) - IMDG 3.12.x
 
 ```console
 install_bundle -download bundle-imdg-3.12.4-app-pado.tar.gz
 ```
+
 [![Pado CVS Import Flow Diagram](images/app-pado-import.png)](help/bundle-imdg-3.12.4-app-pado/README.md)
 
 ---

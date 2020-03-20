@@ -1,6 +1,22 @@
-# Split-Brain Cluster
+# Cluster Split-Brain
 
-This bundle provides scripts, configuration files, and apps for creating a network split-brain environment where you can test Hazelcast's split-brain capabilities. Included are
+This bundle provides scripts, configuration files, and apps for creating a network split-brain environment where you can test Hazelcast's split-brain capabilities. 
+
+## Installing Bundle
+
+```console
+install_bundle -download bundle-imdg-3.12.5-cluster-pod-app-sb-pod-sb-perf_test_sb.tar.gz
+```
+
+## Use Case
+
+To prepare for encountering cluster split-brain situations, this use case provides step-by-step instructions for creating and monitoring a Hazelcast cluster split-brain. 
+
+![Split-Brain Flow Diagram](/images/split-brain.png)
+
+## Bundle Contents
+
+This bundle includes the following components.
 
 - Pod **pod-sb**. The pod-sb pod is configured with one (1) primary node and five (5) nodes. Each node has 2 GiB of memory.
 
@@ -206,7 +222,7 @@ Members {size:3, ver:6} [
 
 Try refreshing the management center from your browser. You should see the list of members changing sporadically indicating there is a network issue.
 
-### 7. Ingest data into Cluster A - `perf_test_sb`
+### 7. Ingest data into Cluster B - `perf_test_sb`
 
 From your host OS, run `test_group` which has been preconfigured to connect to Cluster B, i.e., node-03.local, node-04.local, node-05.local (see `etc/hazelcast-client.xml`). `test_group` updates the data that was inserted earlier. We'll compare the new data with the old data in the split clusters.
 
