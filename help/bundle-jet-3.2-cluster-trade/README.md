@@ -1,6 +1,20 @@
 # Jet Cluster: trade
   
-The `trade` cluster bundle installs a Jet cluster that includes the `build_app` script to clone and build the `realtime-trade-monitor` project maintained by cangencer. You must install this bundle in a Jet workspace.
+The `trade` cluster bundle installs a Jet cluster that includes the `build_app` script to clone and build the `realtime-trade-monitor` project maintained at the GitHub URL shown below.
+
+[https://github.com/cangencer/realtime-trade-monitor.git](https://github.com/cangencer/realtime-trade-monitor.git)
+
+## Installing Bundle
+
+```console
+install_bundle -download bundle-jet-3.2-cluster-trade.tar.gz
+```
+
+## Use Case
+
+This use case demonstrates Jet aggregating Kafka streamed trade data in real time. It includes a trade blotter UI for monitoring the trade aggregations executed in the Jet cluster.
+
+![Jet Trade Diagram](/images/jet-trade.png)
 
 ## Required Software
 
@@ -8,7 +22,7 @@ You must first install Kafka to run the `realtime-trade-monitor` app. To follow 
 
 ```console
 export KAFKA_HOME=~/Work/products/kafka_2.12-2.3.1
-export PATH=$PATH:$KAFKA_HOME
+export PATH=$PATH:$KAFKA_HOME/bin
 ```
 
 ## Installing and Building the `trade` Bundle
@@ -71,6 +85,8 @@ java -jar trade-producer/target/trade-producer-1.0-SNAPSHOT.jar localhost:9092 1
 # 7. Start web server
 java -jar webapp/target/webapp-1.0-SNAPSHOT.jar
 ```
+
+Trade Blotter URL: [http://localhost:9000)](http://localhost:9000)
 
 ## Tips
 

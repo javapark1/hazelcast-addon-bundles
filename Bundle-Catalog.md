@@ -40,7 +40,7 @@ install_bundle -download bundle-imdg-3.12.4-app-pado.tar.gz
 install_bundle -download bundle-imdg-3.12.6-cluster-app-dbsched-pado_dbsched-perf_test_dbsched.tar.gz
 ```
 
-[![DB Sched Diagram](images/db-sched.png "DB Scheduler")](help/bundle-imdg-3.12.6-cluster-app-dbsched-pado_dbsched-perf_test_dbsched/README.md)
+[![DB Sched Diagram](images/db-sched.png)](help/bundle-imdg-3.12.6-cluster-app-dbsched-pado_dbsched-perf_test_dbsched/README.md)
 
 ---
 
@@ -50,4 +50,14 @@ install_bundle -download bundle-imdg-3.12.6-cluster-app-dbsched-pado_dbsched-per
 install_bundle -download bundle-imdg-3.12.6-cluster-app-db-perf_test_db.tar.gz
 ```
 
-[![DB Sync Diagram](images/db-sync.png "DB Sync")](help/bundle-imdg-3.12.6-cluster-app-db-perf_test_db/README.md)
+[![DB Sync Diagram](images/db-sync.png)](help/bundle-imdg-3.12.6-cluster-app-db-perf_test_db/README.md)
+
+---
+
+## Real-Time Trade Monitor - Jet 3.2.x
+
+```console
+install_bundle -download bundle-jet-3.2-cluster-trade.tar.gz
+```
+
+[![Jet Trade Diagram](images/jet-trade.png)](help/bundle-jet-3.2-cluster-trade/README.md)
