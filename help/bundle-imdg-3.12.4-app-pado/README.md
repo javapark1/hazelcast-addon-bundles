@@ -4,11 +4,16 @@ The pado app provides a Hazelcast `Portable` class generator and CSV file import
 
 ## Installing Pado App
 
-The `pado` app currently comes in the form of a bundle. To install the pado bundle, Run the `install_bundle` command as follows:
-
 ```console
 install_bundle -download bundle-imdg-3.12.4-app-pado.tar.gz
 ```
+
+## Use Case
+
+This use case introduces Pado for ingesting CSV file contents in the form of `VersioendPortable` objects into a Hazelcast cluster.
+
+![Pado CVS Import Flow](/images/app-pado-import.png)
+
 
 ## Building Pado
 
