@@ -10,7 +10,7 @@ install_bundle -download bundle-jet-4.0-docker-cdc_tutorial.tar.gz
 
 ## Use Case
 
-This use case introduces the Debezium MySQL connector a Jet job for ingesting database CDC records into a Jet cluster.
+This use case introduces the Debezium MySQL connector as a Jet job for ingesting database CDC records into a Jet cluster.
 
 ![CDC Tutorial Data Flow](/images/jet-cdc-tutorial.png)
 
