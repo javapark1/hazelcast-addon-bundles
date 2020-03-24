@@ -5,7 +5,7 @@ This bundle integrates Hazelcast with Debezium for ingesting initial data and CD
 ## Installing Bundle
 
 ```console
-install_bundle -download bundle-imdg-4.0-docker-debesium_kafka.tar.gz
+install_bundle -download bundle-imdg-4.0-docker-debezium_kafka.tar.gz
 ```
 
 ## Use Case
@@ -37,14 +37,14 @@ All the commands provided in the tutorial are wrapped in the scripts found in th
 We must first build the demo by running the `build_app` command as shown below. This command compiles and packages the `VersionedPortable` data (domain) classes found in the source directory `src`. It also copies the Hazelcast and `hazelcast-addon` jar files to the Docker container mounted volume in the `hazelcast-addon` directory so that the Hazelcast Debezium Kafka connector can include them in its class path.
 
 ```console
-cd_docker debesium_kafka; cd bin_sh
+cd_docker debezium_kafka; cd bin_sh
 ./build_app
 ```
 
 Upon successful build, `hazelcast-addon` directory should have jar files similar to the following:
 
 ```console
-cd_docker debesium_kafka
+cd_docker debezium_kafka
 tree hazelcast-addon
 ```
 
@@ -86,7 +86,7 @@ create_docker -?
 If you are using a host IP other than `host.docker.internal` then you must also make the change in the Debezium Hazelcast connector configuration file as follows.
 
 ```console
-cd_docker debesium_kafka
+cd_docker debezium_kafka
 vi hazelcast/etc/hazelcast-client.xml
 ```
 
@@ -134,7 +134,7 @@ Copy the demo data jar file into the `plugins` directory as follows.
 
 ```console
 cd_docker hazelcast
-cp $HAZELCAST_ADDON_WORKSPACE/docker/debesium_kafka/hazelcast-addon/plugins/debezium-demo-data-1.0-SNAPSHOT.jar hazelcast-addon/plugins/
+cp $HAZELCAST_ADDON_WORKSPACE/docker/debezium_kafka/hazelcast-addon/plugins/debezium-demo-data-1.0-SNAPSHOT.jar hazelcast-addon/plugins/
 ```
 
 ## Starting Docker Containers
@@ -155,7 +155,7 @@ docker-compose up
 Launch six (6) terminals and run each script from their own terminal as shown below. Each script must be run from their own terminal as they will block and display log messages.
 
 ```console
-cd_docker debesium_kafka; cd bin_sh
+cd_docker debezium_kafka; cd bin_sh
 
 # 1. Start Zookeeper
 ./start_zookeeper
@@ -181,7 +181,7 @@ cd_docker debesium_kafka; cd bin_sh
 There are two (2) Kafka connectors that we must register. The MySQL connector is provided by Debezium and the Hazelcast connector is part of the `hazelcast-addon` distribution. 
 
 ```console
-cd_docker debesium_kafka; cd bin_sh
+cd_docker debezium_kafka; cd bin_sh
 ./register_mysql_connector
 ./register_debezium_hazelcast_connector
 ```
@@ -252,7 +252,7 @@ Upon build completion, copy the demo data jar file to the destkop plugins direct
 ```console
 cd_app desktop
 cd hazelcast-desktop_<version>
-cp $HAZELCAST_ADDON_WORKSPACE/docker/debesium_kafka/hazelcast-addon/plugins/debezium-demo-data-1.0-SNAPSHOT.jar plugins/
+cp $HAZELCAST_ADDON_WORKSPACE/docker/debezium_kafka/hazelcast-addon/plugins/debezium-demo-data-1.0-SNAPSHOT.jar plugins/
 ```
 
 Edit the `pado.properties` file and enter the Portable factory class as follows.
@@ -273,7 +273,7 @@ hazelcast.client.config.serialization.portable.factories=1:org.hazelcast.demo.nw
 
 ```console
 # Shutdown Debezium containers
-cd_docker debesium_kafka; bin_sh
+cd_docker debezium_kafka; bin_sh
 ./cleanup
 
 # Shutdown Hazelcast containers

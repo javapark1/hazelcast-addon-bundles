@@ -1,1 +1,1 @@
-This bundle integrates Hazelcast with Debezium for ingesting initial data and CDC records from MySQL into a Hazelcast cluster via a Kafka connector included in the `hazelcast-addon` distribution.
+This bundle integrates Hazelcast with Debezium for ingesting initial data and CDC records from MySQL into a Hazelcast cluster via a Kafka sink connector included in the `hazelcast-addon` distribution.
