@@ -57,10 +57,10 @@ install_bundle -download bundle-imdg-3.12.6-cluster-app-db-perf_test_db.tar.gz
 ## Debezium-Kafka Hazelcast Connector - IMDG 4.0
 
 ```console
-install_bundle -download bundle-imdg-4.0-docker-debesium_kafka.tar.gz
+install_bundle -download bundle-imdg-4.0-docker-debezium_kafka.tar.gz
 ```
 
-[![Debezium-Kafka Diagram](images/debezium-kafka.png)](help/bundle-imdg-4.0-docker-debesium_kafka/README.md)
+[![Debezium-Kafka Diagram](images/debezium-kafka.png)](help/bundle-imdg-4.0-docker-debezium_kafka/README.md)
 ---
 
 ## Real-Time Trade Monitor - Jet 3.2.x
