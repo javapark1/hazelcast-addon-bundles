@@ -267,7 +267,7 @@ hazelcast.client.config.serialization.portable.factories=1:org.hazelcast.demo.nw
 20001:org.hazelcast.addon.demo.debezium.data.PortableFactoryImpl
 ```
 
-![Desktop Screenshot](images/desktop-inventory-customers.png)
+![Desktop Screenshot](/images/desktop-inventory-customers.png)
 
 ## Tearing Down
 
