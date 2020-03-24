@@ -275,7 +275,7 @@ hazelcast.client.config.serialization.portable.factories=1:org.hazelcast.demo.nw
 
 ```console
 # Shutdown Debezium containers
-cd_docker debezium_kafka; bin_sh
+cd_docker debezium_kafka; cd bin_sh
 ./cleanup
 
 # Shutdown Hazelcast containers
