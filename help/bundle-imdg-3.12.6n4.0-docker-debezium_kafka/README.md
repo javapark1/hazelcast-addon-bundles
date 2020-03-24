@@ -4,8 +4,10 @@ This bundle integrates Hazelcast with Debezium for ingesting initial data and CD
 
 ## Installing Bundle
 
+This bundle supports Hazelcast 3.12.x and 4.0.
+
 ```console
-install_bundle -download bundle-imdg-4.0-docker-debezium_kafka.tar.gz
+install_bundle -download bundle-imdg-3.12.6n4.0-docker-debezium_kafka.tar.gz
 ```
 
 ## Use Case
