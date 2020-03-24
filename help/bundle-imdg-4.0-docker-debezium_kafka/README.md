@@ -12,7 +12,7 @@ install_bundle -download bundle-imdg-4.0-docker-debesium_kafka.tar.gz
 
 This use case ingests data changes made in the MySQL database into a Hazelcast cluster via Kafka connectors: the Debezium MySQL source connector and the `hazelcast-addon` Debezium sink connector.
 
-![Debezium-Kafka Diagram](images/debezium-kafka.png)
+![Debezium-Kafka Diagram](/images/debezium-kafka.png)
 
 ## Required Software
 
