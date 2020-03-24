@@ -18,8 +18,7 @@ This use case introduces Pado for ingesting CSV file contents in the form of `Ve
 ## Building Pado
 
 ```console
-cd_app pado
-cd bin_sh
+cd_app pado; cd bin_sh
 ./build_app
 ```
 
