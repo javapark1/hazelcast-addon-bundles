@@ -41,7 +41,7 @@ cd_docker debezium_kafka; cd bin_sh
 ./build_app
 ```
 
-Upon successful build, `hazelcast-addon` directory should have jar files similar to the following:
+Upon successful build, the `hazelcast-addon` directory should have jar files similar to the following:
 
 ```console
 cd_docker debezium_kafka
@@ -71,13 +71,13 @@ create_docker -cluster hazelcast -host host.docker.internal
 cd_docker hazelcast
 ```
 
-If you are running Docker Desktop, then the host name, `host.docker.internal`, is accessible from the containers as well as the host machine. Run the `ping` command to make sure you have this host name defined.
+If you are running Docker Desktop, then the host name, `host.docker.internal`, is accessible from the containers as well as the host machine. You can run the `ping` command to check the host name.
 
 ```console
 ping host.docker.internal
 ```
 
-If `host.docker.internal` is not defined then you will need to use the host IP address that can be accessed from both the containers and the host machine. Run `create_docker -?` or `man create_docker` to see the usage.
+If `host.docker.internal` is not defined then you will need to use the host IP address that can be accessed from both the Docker containers and the host machine. Run `create_docker -?` or `man create_docker` to see the usage.
 
 ```console
 create_docker -?
