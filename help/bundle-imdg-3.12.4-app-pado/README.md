@@ -99,7 +99,7 @@ mv ../../data/schema/generated/* ../../data/schema/
 
 ```console
 # Copy the jar file to the hazelcast-addon workspace plugins directory
-cp ../../../pado_<vesion>/dropins/generated.jar $HAZELCAST_ADDON_WORKSPACE/plugins/
+cp ../../dropins/generated.jar $HAZELCAST_ADDON_WORKSPACE/plugins/
 
 # Add the Portable factory class ID in hazelcast.xml
 switch_cluster myhz
