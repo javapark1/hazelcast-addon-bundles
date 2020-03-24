@@ -274,22 +274,16 @@ cp ../../dropins/generated.jar $HAZELCAST_ADDON_WORKSPACE/plugins/
 start_cluster
 ```
 
-9. Import the downloaded data into the cluster.
+9. Import CSV file contents to the cluster.
 
 ```console
-./import_scheduler -import
-```
-
-10. Once you are satisfied with the results, you can schedule the job by executing the following.
-
-```console
-./import_scheduler -sched
+./import_csv
 ```
 
 ## About Pado
 
 Pado is authored by Dae Song Park (email:dspark@netcrest.com) to bring linear scalability to IMDG for storing Big Data. His architecture achieves this by logically federating data grids and providing an abstract API layer that not only hides the complexity of the underlying IMDG API but introduces new Big Data capabilities that IMDG products lack today. He coined the terms **grids within grid** and **grid of grids** to illustrate his architecture which spans in-memory data across a massive number of clusters with a universal namespace similar to URL for easy data access.
 
-The current implementation of Pado only supports Pivotal GemFire 8.x. Unfortunately, the API transformation of GemFire to Apache Geode is requiring a major overhaul to Pado. Stay tuned.
+The current implementation of Pado only supports Pivotal GemFire 8.x.
 
 The `hazelcast-addon` project was inspired by Pado and borrows many architecture and script ideas from Pado.
