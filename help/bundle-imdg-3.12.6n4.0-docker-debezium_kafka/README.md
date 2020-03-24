@@ -55,6 +55,7 @@ hazelcast-addon/
 ├── etc
 │   └── hazelcast-client.xml
 ├── lib
+│   ├── hazelcast-addon-common-0.9.0-SNAPSHOT.jar
 │   ├── hazelcast-addon-core-4-0.9.0-SNAPSHOT.jarr
 │   └── hazelcast-enterprise-all-4.0.jar
 ├── log
