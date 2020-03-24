@@ -5,7 +5,7 @@ This bundle integrates Hazelcast with Debezium for ingesting initial data and CD
 ## Installing Bundle
 
 ```console
-install_bundle -download bundle-imdg-4.0-docker-debesium_kafka.tar.gz
+install_bundle -download bundle-imdg-4.0-docker-debezium_kafka.tar.gz
 ```
 
 ## Use Case
@@ -37,14 +37,14 @@ All the commands provided in the tutorial are wrapped in the scripts found in th
 We must first build the demo by running the `build_app` command as shown below. This command compiles and packages the `VersionedPortable` data (domain) classes found in the source directory `src`. It also copies the Hazelcast and `hazelcast-addon` jar files to the Docker container mounted volume in the `hazelcast-addon` directory so that the Hazelcast Debezium Kafka connector can include them in its class path.
 
 ```console
-cd_docker debesium_kafka; cd bin_sh
+cd_docker debezium_kafka; cd bin_sh
 ./build_app
 ```
 
 Upon successful build, `hazelcast-addon` directory should have jar files similar to the following:
 
 ```console
-cd_docker debesium_kafka
+cd_docker debezium_kafka
 tree hazelcast-addon
 ```
 
@@ -64,7 +64,7 @@ hazelcast-addon/
 
 ## Creating Hazelcast Docker Containers
 
-Let's create a Hazelcast cluster running on Docker containers as follows.
+Let's create a Hazelcast cluster to run on Docker containers as follows.
 
 ```console
 create_docker -cluster hazelcast -host host.docker.internal
@@ -77,7 +77,7 @@ If you are running Docker Desktop, then the host name, `host.docker.internal`, i
 ping host.docker.internal
 ```
 
-If `host.docker.internal` is not defined then you will need to use the host IP address that can be access from both the containers and the host machine. Run `create_docker -?` or `man create_docker` to see the usage.
+If `host.docker.internal` is not defined then you will need to use the host IP address that can be accessed from both the containers and the host machine. Run `create_docker -?` or `man create_docker` to see the usage.
 
 ```console
 create_docker -?
@@ -86,8 +86,8 @@ create_docker -?
 If you are using a host IP other than `host.docker.internal` then you must also make the change in the Debezium Hazelcast connector configuration file as follows.
 
 ```console
-cd_docker debesium_kafka
-vi hazelcast/etc/hazelcast-client.xml
+cd_docker debezium_kafka
+vi hazelcast-addon/etc/hazelcast-client.xml
 ```
 
 Replace `host.docker.internal` in `hazelcast-client.xml` with your host IP address.
@@ -107,7 +107,7 @@ Replace `host.docker.internal` in `hazelcast-client.xml` with your host IP addre
 
 ### Configuring Hazelcast Cluster
 
-If you will be querying Hazelcast, then you must register the `VersionedPortable` factory class we have built in the previous section. For example, you can use the `desktop` app to browse the data in the Hazelcast cluster. **You can skip this section if you won't be querying data.**
+If you will be querying Hazelcast, then you must register the `VersionedPortable` factory class we have built in the previous section. For example, you can use the `desktop` app to query and browse the data in the Hazelcast cluster. **You can skip this section if you won't be querying data.**
 
 Edit `hazelcast.xml` and register the portable factory class as shown below.
 
@@ -134,12 +134,12 @@ Copy the demo data jar file into the `plugins` directory as follows.
 
 ```console
 cd_docker hazelcast
-cp $HAZELCAST_ADDON_WORKSPACE/docker/debesium_kafka/hazelcast-addon/plugins/debezium-demo-data-1.0-SNAPSHOT.jar hazelcast-addon/plugins/
+cp $HAZELCAST_ADDON_WORKSPACE/docker/debezium_kafka/hazelcast-addon/plugins/debezium-demo-data-1.0-SNAPSHOT.jar hazelcast-addon/plugins/
 ```
 
 ## Starting Docker Containers
 
-There are numerous Docker containers to this demo. We'll first start the Hazelcast cluster containers and then proceed with the Debezium containers. For this demo, intentionally, we made each container to run in the foreground so that you can view the log events. You will need eight (8) terminals in total. 
+There are numerous Docker containers to this demo. We'll first start the Hazelcast cluster containers and then proceed with the Debezium containers. For this demo, we intentionally made each container to run in the foreground so that you can view the log events. You will need to launch a total of eight (8) terminals. 
 
 ### Start Hazelcast Containers
 
@@ -155,7 +155,7 @@ docker-compose up
 Launch six (6) terminals and run each script from their own terminal as shown below. Each script must be run from their own terminal as they will block and display log messages.
 
 ```console
-cd_docker debesium_kafka; cd bin_sh
+cd_docker debezium_kafka; cd bin_sh
 
 # 1. Start Zookeeper
 ./start_zookeeper
@@ -181,7 +181,7 @@ cd_docker debesium_kafka; cd bin_sh
 There are two (2) Kafka connectors that we must register. The MySQL connector is provided by Debezium and the Hazelcast connector is part of the `hazelcast-addon` distribution. 
 
 ```console
-cd_docker debesium_kafka; cd bin_sh
+cd_docker debezium_kafka; cd bin_sh
 ./register_mysql_connector
 ./register_debezium_hazelcast_connector
 ```
@@ -206,6 +206,8 @@ The last command should display the inventory connector that we registered previ
 ```
 
 ### MySQL CLI
+
+Using the MySQL CLI, you can change table contents. The changes you make will be captured in the form of change events by the Debezium source connector. The Hazelcast sink connector in turn receives the change events, transforms them into data objects and updates (or deletes) the assigned map, i.e., `inventory/customers`.
 
 ```console
 use inventory;
@@ -239,7 +241,7 @@ Map Values [inventory/customers]:
 
 ### Desktop
 
-You can also install the desktop app and browse the map contents.
+You can also install the desktop app and browse and query the map contents.
 
 ```console
 create_app -app desktop
@@ -247,15 +249,15 @@ cd_app desktop; bin_sh
 ./build_app
 ```
 
-Upon build completion, copy the demo data jar file to the destkop plugins directory.
+Upon build completion, copy the demo data jar file to the destkop `plugins` directory.
 
 ```console
 cd_app desktop
 cd hazelcast-desktop_<version>
-cp $HAZELCAST_ADDON_WORKSPACE/docker/debesium_kafka/hazelcast-addon/plugins/debezium-demo-data-1.0-SNAPSHOT.jar plugins/
+cp $HAZELCAST_ADDON_WORKSPACE/docker/debezium_kafka/hazelcast-addon/plugins/debezium-demo-data-1.0-SNAPSHOT.jar plugins/
 ```
 
-Edit the `pado.properties` file and enter the Portable factory class as follows.
+Edit the `pado.properties` file and enter the `PortableFactoryImpl` class as follows.
 
 ```console
 vi etc/pado.properties
@@ -273,7 +275,7 @@ hazelcast.client.config.serialization.portable.factories=1:org.hazelcast.demo.nw
 
 ```console
 # Shutdown Debezium containers
-cd_docker debesium_kafka; bin_sh
+cd_docker debezium_kafka; bin_sh
 ./cleanup
 
 # Shutdown Hazelcast containers
