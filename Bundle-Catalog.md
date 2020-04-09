@@ -7,7 +7,7 @@ The online bundles can be installed by executing the `install_bundle` commands a
 ## CDC Tutorial - Jet 4.0
 
 ```console
-install_bundle -download bundle-imdg-3.12.6-cluster-app-dbsched-pado_dbsched-perf_test_dbsched.tar.gz
+install_bundle -download bundle-jet-4.0-docker-cdc_tutorial.tar.gz
 ```
 
 [![CDC Tutorial Data Flow Diagram](images/jet-cdc-tutorial.png "Jet CDT Tutorial")](help/bundle-jet-4.0-docker-cdc_tutorial/README.md)
